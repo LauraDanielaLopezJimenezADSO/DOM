@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+/* custom properties css */
+:root{
+    --ripeLemon: #F3E31B;
+    --black: #040404;
+    --butteredRum: #97880A;
+    --yukonGold: #7C6C04;
+    --blanco: #fff;
+    --max-width: 1400px;
+    --padding: 8px;
+    --margin: 10px;
+    --border-radius: 10px;
+    --transition: 1s;
+    --font-size: 16px;
+    
+}
+
+/* cambiar colores predeterminados (por defecto) y personalizar los nuevos */
+::selection{
+    background: var(--ripeLemon);
+    color: var(--blanco);
+}
+
+/* selector (en css) body (etiqueta en html) */
+body{
+    background: var(--black);
+    color: var(--blanco);
+    font-size: var(--font-size);
+    font-family: "Montserrat", sans-serif;
+    line-height: 24px;
+}
+
+header{
+    text-align: center;
+    background: var(--black);
+    color: var(--ripeLemon);
+    border-bottom: solid 1px var(--ripeLemon);
+    padding: var(--padding);
+    margin-bottom: var(--margin)
+}
+
+section{
+    padding: var(--padding);
+}
+
+a, .list__item{
+    color: var(--ripeLemon);
+    text-decoration: none;
+}
+
+h1, h2{
+    padding: var(--padding);
+}
+
+p{
+    font-size: 1rem;
+    margin: 0 0 var(--margin);
+    color: var(--blanco);
+}
+/* : seudoclase --- :: seudo elemento */
+p::first-letter{
+    font-size: 1.4rem;
+    color: var(--ripeLemon);
+    font-weight: bold;
+}
+
+ul{
+    list-style: none;
+
+}
+
+/* etiqueta ul con la clase list ---------------------*/
+li.list__item{
+    cursor: pointer;
+}
+
+li.item:hover a {
+    color: var(--black);
+}
+
+.container{
+    max-width: var(--max-width);
+    margin: 0 auto;  /* centrar el div */
+    padding: 0 var(--padding);
+}
+
+/* FORMULARIO */
+.search{
+    display: flex;
+    justify-content: end;
+}
+
+.search__form{
+    border: solid 1px var(--ripeLemon);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--margin);
+    padding: var(--padding);
+    display: inline-grid;
+    grid-template-columns: auto 40px;
+    grid-template-rows: auto;
+    gap: 4px;
+    /* justify-content: end; */
+}
+
+.input{
+    width: 100%;
+    padding: var(--padding);
+    outline: none;    /* quitar el borde predeterminado del input al estar activo */
+    border: solid 1px var(--ripeLemon);
+    font-size: 1rem;
+    color: var(--black);
+}
+
+.cards{
+    /* distribucion de 3 */
+    /* display: flex;
+    flex-wrap: wrap; */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+.card{
+    width: 450px;
+    border: solid 1px var(--ripeLemon); /* 3 valores - tipo de borde, tamalñao y color */
+    border-radius: var(--border-radius);
+    margin: 0 auto;
+    
+}
+
+.card__header{
+    padding: var(--padding);
+
+}
+
+.card__title{
+    text-wrap: wrap;
+    word-break: break-all;
+}
+
+.card__body{
+    padding: var(--padding);
+}
+
+.card__img{
+    width: 100%;
+}
+
+.card__paragraph{
+    padding: var(--padding);
+}
+
+.button{
+    padding: var(--padding);
+    background: var(--ripeLemon);
+    color: var(--black);
+    border-radius: var(--border-radius);
+    font-size: .9rem;
+    font-weight: 500;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    border: solid 0.5px var(--ripeLemon);
+    transition: var(--transition);
+}
+
+.button--icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button__text{}
+
+.button__icon{
+    font-size: 1.5rem;
+}
+
+.button--outline{
+    background: var(--black);
+    color: var(--ripeLemon);
+    border: solid 1px var(--ripeLemon);
+}
+
+.button:hover{
+    background: var(--black);
+    color: var(--ripeLemon);
+}
+
+.button--outline:hover{
+    background: var(--ripeLemon);
+    color: var(--black);
+}
+
+.list{
+    text-align: center;
+    padding: var(--padding);
+}
+
+.list__item{
+    border-bottom: solid 1px var(--butteredRum);
+    padding: var(--padding);
+    transition: var(--transition);
+    font-size: var(--font-size);
+}
+
+.list__item:hover{
+    background: var(--butteredRum);
+    color: var(--blanco);
+}
+
+ul.list > .list__item:last-child{
+    border: none;
+}
+
+ul.list > li.list__item > a:visited{
+    color: rgb(53, 185, 0);
+
+}
+
+

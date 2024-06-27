@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM - ADSO</title>
+  <link rel="stylesheet" href="estilos.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+  <header class="header" id="header">
+    <div class="container header">
+      <h1>JavaScript DOM</h1>
+    </div>
+  </header>
+  <main>
+    <section>
+      <div class="container">
+        <h2 id="documento">
+          QUE ES EL DOM
+        </h2>
+        <p>
+          El modelo de objeto de documento (DOM) es una interfaz de programación para los documentos HTML y XML.
+          Facilita una representación estructurada del documento y define de qué manera los programas pueden acceder, al
+          fin de modificar, tanto su estructura, estilo y contenido. El DOM da una representación del documento como un
+          grupo de nodos y objetos
+          estructurados que tienen propiedades y métodos. Esencialmente, conecta las páginas web a scripts o lenguajes
+          de programación.
+        </p>
+        <h2 id="api">
+          ¿que es API?
+        </h2>
+        <p>
+          API es el acrónimo de "Application Programming Interface" (Interfaz de programación de aplicaciones), y es una
+          colección de clases, interfaces, propiedades, métodos, y otras estructuras de código que los desarrolladores
+          pueden utilizar para acceder a la funcionalidad de una aplicación.
+        </p>
+        <p>
+          Representación del HTML
+        </p>
+        <p class="estructura">
+          Estructura de datos del ARBOL
+        </p>
+        <div class="card">
+          <ul class="list">
+            <li class="list__item">Crear</li>
+            <li class="list__item">Modificar</li>
+            <li class="list__item">Mover</li>
+          </ul>
+        </div>
+        <div class="card">
+          <ul class="list">
+            <li class="list__item">
+              <a href="https://es.javascript.info/browser-environment" target="_blank">Entorno del navegador</a>
+            </li>
+            <li class="list__item">
+              <a href="https://es.javascript.info/dom-nodes" target="_blank">Árbol del Modelo de Objetos del
+                Documento</a>
+            </li>
+            <li class="list__item">
+              <a href="https://es.javascript.info/dom-navigation" target="_blank">Recorriendo el DOM</a>
+            </li>
+            <li class="list__item">
+              <a href="https://es.javascript.info/searching-elements-dom" target="_blank">Buscar elementos del DOM</a>
+            </li>
+            <li class="list__item">
+              <a id="propiedad" href="https://es.javascript.info/basic-dom-node-properties" target="_blank">Propiedades del Nodo: tipo,
+                etiqueta y contenido</a>
+            </li>
+            <li class="list__item">
+              <a href="https://es.javascript.info/dom-attributes-and-properties" target="_blank">Atributos y
+                propiedades</a>
+            </li>
+            <li class="list__item">
+              <a href="https://es.javascript.info/modifying-document" target="_blank">Modificando el contenido</a>
+            </li>
+            <li class="list__item">
+              <a href="https://es.javascript.info/styles-and-classes" target="_blank">Estilos y clases</a>
+            </li>
+            <li class="list__item">
+              <a href="https://es.javascript.info/size-and-scroll" target="_blank">Tamaño de elementos y
+                desplazamiento</a>
+            </li>
+            <li class="list__item">
+              <a href="https://es.javascript.info/size-and-scroll-window" target="_blank">Tamaño de ventana y
+                desplazamiento</a>
+            </li>
+            <li class="list__item">
+              <a href="https://es.javascript.info/coordinates" target="_blank">Coordenadas</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="container">
+        <h2>Elementos y Selectores</h2>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum tenetur fugiat corrupti molestiae! Ea quasi voluptatibus vero repellendus distinctio voluptatum voluptatem quam, perspiciatis necessitatibus illum hic ut dolorum tenetur laborum.
+        </p>
+        
+        <div class="search">
+          <form action="" class="search__form" id="search">
+            <input type="search" name="search" class="input" placeholder="Buscar..." autocomplete="off">
+            <button class="button button--icon">
+              <i class='bx bx-search'></i>
+            </button>
+          </form>
+        </div>
+        <div class="cards">
+          <div class="card">
+            <div class="card__header">
+              <h2 class="card__title">
+                Lorem ipsum dolor sit amet consectetur.
+              </h2>
+            </div>
+            <div class="card__body">
+              <img src="https://picsum.photos/640/360" class="card__img" alt="img">
+              <p class="card__paragraph">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore unde aperiam sapiente repellat! Eum consequuntur, necessitatibus expedita dolorum repudiandae sapiente.
+              </p>
+              <a href="#" class="button button--outline">
+                <span class="button__text">Saber más</span>
+                <i class='bx bxs-chevron-right button__icon'></i>
+              </a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card__header">
+              <h2 class="card__title">
+                Lorem ipsum dolor sit amet consectetur.hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+              </h2>
+            </div>
+            <div class="card__body">
+              <img src="https://picsum.photos/640/360" class="card__img" alt="img">
+              <p class="card__paragraph">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore unde aperiam sapiente repellat! Eum consequuntur, necessitatibus expedita dolorum repudiandae sapiente.
+              </p>
+              <a href="#" class="button">
+                <span class="button__text">Saber más</span>
+                <i class='bx bxs-chevron-right button__icon'></i>
+              </a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card__header">
+              <h2 class="card__title">
+                Lorem ipsum dolor sit amet consectetur.
+              </h2>
+            </div>
+            <div class="card__body">
+              <img src="https://picsum.photos/640/360" class="card__img" alt="img">
+              <p class="card__paragraph">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore unde aperiam sapiente repellat! Eum consequuntur, necessitatibus expedita dolorum repudiandae sapiente.
+              </p>
+              <a href="#" class="button">
+                <span class="button__text">Saber más</span>
+                <i class='bx bxs-chevron-right button__icon'></i>
+              </a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card__header">
+              <h2 class="card__title">
+                Lorem ipsum dolor sit amet consectetur.
+              </h2>
+            </div>
+            <div class="card__body">
+              <img src="https://picsum.photos/640/360" class="card__img" alt="img">
+              <p class="card__paragraph">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore unde aperiam sapiente repellat! Eum consequuntur, necessitatibus expedita dolorum repudiandae sapiente.
+              </p>
+              <a href="#" class="button">
+                <span class="button__text">Saber más</span>
+                <i class='bx bxs-chevron-right button__icon'></i>
+              </a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card__header">
+              <h2 class="card__title">
+                Lorem ipsum dolor sit amet consectetur.
+              </h2>
+            </div>
+            <div class="card__body">
+              <img src="https://picsum.photos/640/360" class="card__img" alt="img">
+              <p class="card__paragraph">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore unde aperiam sapiente repellat! Eum consequuntur, necessitatibus expedita dolorum repudiandae sapiente.
+              </p>
+              <a href="#" class="button">
+                <span class="button__text">Saber más</span>
+                <i class='bx bxs-chevron-right button__icon'></i>
+              </a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card__header">
+              <h2 class="card__title">
+                Lorem ipsum dolor sit amet consectetur.
+              </h2>
+            </div>
+            <div class="card__body">
+              <img src="https://picsum.photos/640/360" class="card__img" alt="img">
+              <p class="card__paragraph">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore unde aperiam sapiente repellat! Eum consequuntur, necessitatibus expedita dolorum repudiandae sapiente.
+              </p>
+              <a href="#" class="button">
+                <span class="button__text">Saber más</span>
+                <i class='bx bxs-chevron-right button__icon'></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#root{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;  
+  }
+
+.box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    margin: 5px;
+    width: 250px;
+    height: 350px;
+    background: rgb(255, 185, 185);
+    color: rgb(0, 0, 0);
+    text-align: center;
+    border-radius: 40px;
+    box-shadow: 1px 1px 10px;
+    transition: 0.5s;
+}
+
+.box:hover{
+    background-color: rgb(47, 14, 14);
+    color: #fff;
+    /* valor total de la caja es 1 o 100% y se le suma al 1 */
+    scale: 1.1; 
+    margin: 20px;
+}
+
+.b{
+    color: rgb(17, 17, 17);
+}
+
+.border{
+    border: solid 2px rgb(45, 0, 0);
+}
+
+.container{
+    padding-top: 40px;
+    max-width: 1400px;
+    height: 100vh;
+    width: 100vw;
+    margin: auto;
+}
