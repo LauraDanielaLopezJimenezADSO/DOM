@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <form class="form">
+        <label for="name">Nombre: </label>
+        <input type="text" id="name" autocomplete="off"/>
+
+        <label for="apellido">Apellido: </label>
+        <input type="text" id="apellido" autocomplete="off"/>
+
+        <label for="telefono">Telefono: </label>
+        <input type="number" id="telefono" autocomplete="off"/>
+
+        <label for="direccion">Direccion: </label>
+        <input type="text" id="direccion"autocomplete="off" />
+
+        <label for="tipo">Tipo de documento: </label>
+        <select cname="tipo" id="tipo">
+            <option value="">Seleccione...</option>
+            <option value="TI">Tarjeta de identidad</option>
+            <option value="CC">Cedula de ciudadania</option>
+            <option value="PPT">Cédula de extranjería</option>
+        </select>
+
+        <label for="documento">Documento: </label>
+        <input type="number" id="documento" autocomplete="off"/>
+
+        <button type="submit">Enviar</button>
+    </form>
+    <script src="app.js"></script>
+</body>
+</html>
