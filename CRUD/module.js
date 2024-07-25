@@ -60,3 +60,32 @@ export function validarTipoDoc(e) {
         e.target.classList.add("error");
     }
 }
+
+export function validarLetras(e) {
+    let letras = /^[A-Za-zÀ-ÿ\s]*$/
+    if (!letras.test(e.key)) {
+        e.preventDefault();
+    }
+}
+
+export function validarNumero(e) {
+    if (e.keyCode < 48 || e.keyCode > 57) {
+        e.preventDefault(); // Esto evitará que se ingrese el valor
+    }
+}
+
+
+export function validarPoliticas(e, boton) {
+    if(e.target.checked){
+        boton.removeAttribute("disabled","");
+    }else{
+        boton.setAttribute("disabled","");
+    }
+}
+
+
+export function validarKey(e) {
+    console.log("keypress", e)
+    console.log(e.target.value)
+    console.log(e.keyCode)
+}
