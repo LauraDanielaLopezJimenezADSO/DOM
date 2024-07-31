@@ -1,0 +1,55 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+form{
+    max-width: 450px;
+    width: 450px;
+    margin: 0 auto;
+    background-color: rgb(0, 7, 99);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 30px;
+    gap: 15px;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+input, select, button{
+    padding: 10px;
+    border: 2px solid rgb(37, 0, 49);
+    outline: none;
+    border-radius: 8px;
+}
+
+button{
+    box-shadow: 1px 1px 10px rgb(37, 0, 49);
+    background-color: rgb(51, 160, 223);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.5s;
+    font-size: 20px;
+}
+
+button:hover{
+    color: rgb(0, 7, 99);
+    background-color: white;
+    box-shadow: 1px 1px 10px white;
+    border: 1px solid white;
+}
+
+.error{
+    border: 2px solid red;
+}
+
+.correcto{
+    border: 2px solid rgb(56, 240, 0);
+}
+
+

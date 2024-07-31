@@ -8,38 +8,37 @@ export function validarCorreo(e) {
     }
 }
 
-export function validarCampos(event) {
-    event.preventDefault()
+export function validarCampos(e) {
+    e.preventDefault()
     console.log(nombre.value);
     if (nombre.value === "") {
-        nombre.focus()
-        nombre.classList.add("error")
-    }
-    if( apellido.value === ""){
-        apellido.focus()
-        apellido.classList.add("error")
+        e.target.focus()
+        e.target.classList.add("error")
+    
+    }if( apellido.value === ""){
+        e.target.focus()
+        e.target.classList.add("error")
 
     }if(tipo_doc.value === "0"){
-        tipo_doc.focus()
-        tipo_doc.classList.add("error")
+        e.target.classList.add("error")
+        e.target.focus()
     }
     if(direccion.value === ""){
-        direccion.focus()
-        direccion.classList.add("error")
+        e.target.focus()
+        e.target.classList.add("error")
     }if(telefono.value === ""){
-        telefono.focus()
-        telefono.classList.add("error")
+        e.target.focus()
+        e.target.classList.add("error")
     }if(documento.value === ""){
-        documento.focus()
-        documento.classList.add("error")
+        e.target.focus()
+        e.target.classList.add("error")
     }
 
     if (email.value === "") {
-        email.focus();
-        email.classList.add("error");
+        e.target.focus();
+        e.target.classList.add("error");
     }
 }
-
 
 export function remover(e) {
     if (!e.target.value == "") {
@@ -90,11 +89,24 @@ export function validarKey(e) {
     console.log(e.keyCode)
 }
 
+
 export function is_valid(event, form) {
+    alert("..")
     event.preventDefault();
     const elementos = document.querySelectorAll(form)
+    let formularioValido = true
     // console.log(elementos);
-    elementos.forEach(elementos => {
-        
+    elementos.forEach(function(elemento) {
+        if(elemento.value){
+            formularioValido= false;
+            elemento.classList.add("error");
+        }
     })
+
+    if(formularioValido){
+        alert("todo ookk")
+    }else{
+        alert("ni modo, toca otra vez")
+    }
+
 }

@@ -1,0 +1,223 @@
+{
+  "user": [
+    {
+      "id": "cfb3",
+      "nombre": "dzfh",
+      "apellido": "fgxnfx",
+      "direccion": "nxf",
+      "telefono": "576465",
+      "tipo_doc": "1",
+      "documento": "678"
+    },
+    {
+      "id": "404e",
+      "nombre": "Gottfried",
+      "apellido": "Souza Silva",
+      "direccion": "Av. dos Andradas, 3000",
+      "telefono": "teste@exemplo.us",
+      "tipo_doc": "0",
+      "documento": "45647"
+    },
+    {
+      "id": "e308",
+      "nombre": "Juan Francisco",
+      "apellido": "García Flores",
+      "direccion": "C. Montes Urales 445",
+      "telefono": "ejemplo@ejemplo.mx",
+      "tipo_doc": "0",
+      "documento": "345"
+    },
+    {
+      "id": "5704",
+      "nombre": "Juan Francisco",
+      "apellido": "García Flores",
+      "direccion": "C. Montes Urales 445",
+      "telefono": "ejemplo@ejemplo.mx",
+      "tipo_doc": "0",
+      "documento": ""
+    },
+    {
+      "id": "ea2f",
+      "nombre": "Gottfried",
+      "apellido": "Leibniz",
+      "direccion": "Erika-Mann-Straße 33",
+      "telefono": "test@beispiel.de",
+      "tipo_doc": "2",
+      "documento": "33"
+    },
+    {
+      "id": "84af",
+      "nombre": "Gottfried",
+      "apellido": "Leibniz",
+      "direccion": "Erika-Mann-Straße 33",
+      "telefono": "test@beispiel.de",
+      "tipo_doc": "0",
+      "documento": ""
+    },
+    {
+      "id": "8114",
+      "nombre": "Juan Francisco",
+      "apellido": "García Flores",
+      "direccion": "C. Montes Urales 445",
+      "telefono": "ejemplo@ejemplo.mx",
+      "tipo_doc": "0",
+      "documento": ""
+    },
+    {
+      "id": "b5e2",
+      "nombre": "Juan Francisco",
+      "apellido": "García Flores",
+      "direccion": "C. Montes Urales 445",
+      "telefono": "ejemplo@ejemplo.mx",
+      "tipo_doc": "1",
+      "documento": "4"
+    },
+    {
+      "id": "ce63",
+      "nombre": "Gottfried",
+      "apellido": "Leibniz",
+      "direccion": "Erika-Mann-Straße 33",
+      "telefono": "test@beispiel.de",
+      "tipo_doc": "2",
+      "documento": "1"
+    },
+    {
+      "id": "2c71",
+      "nombre": "João",
+      "apellido": "Souza Silva",
+      "direccion": "Av. dos Andradas, 3000",
+      "telefono": "teste@exemplo.us",
+      "tipo_doc": "0",
+      "documento": "1"
+    },
+    {
+      "id": "8c9f",
+      "nombre": "Juan Francisco",
+      "apellido": "García Flores",
+      "direccion": "C. Montes Urales 445",
+      "telefono": "ejemplo@ejemplo.mx",
+      "tipo_doc": "0",
+      "documento": "2"
+    },
+    {
+      "id": "5470",
+      "nombre": "Gottfried",
+      "apellido": "Leibniz",
+      "direccion": "Erika-Mann-Straße 33",
+      "telefono": "test@beispiel.de",
+      "tipo_doc": "0",
+      "documento": "1"
+    },
+    {
+      "id": "4a88",
+      "nombre": "Gottfried",
+      "apellido": "Leibniz",
+      "direccion": "Erika-Mann-Straße 33",
+      "telefono": "test@beispiel.de",
+      "tipo_doc": "0",
+      "documento": ""
+    },
+    {
+      "id": "bd9c",
+      "nombre": "Gottfried",
+      "apellido": "Leibniz",
+      "direccion": "Erika-Mann-Straße 33",
+      "telefono": "test@beispiel.de",
+      "tipo_doc": "0",
+      "documento": "3"
+    },
+    {
+      "id": "40b9",
+      "nombre": "João",
+      "apellido": "Souza Silva",
+      "direccion": "Av. dos Andradas, 3000",
+      "telefono": "teste@exemplo.us",
+      "tipo_doc": "0",
+      "documento": ""
+    },
+    {
+      "id": "1fbd",
+      "nombre": "",
+      "apellido": "",
+      "direccion": "",
+      "telefono": "",
+      "tipo_doc": "0",
+      "documento": ""
+    },
+    {
+      "id": "a0b1",
+      "nombre": "Gottfried",
+      "apellido": "Leibniz",
+      "direccion": "Erika-Mann-Straße 33",
+      "telefono": "test@beispiel.de",
+      "tipo_doc": "0",
+      "documento": ""
+    },
+    {
+      "id": "f491",
+      "nombre": "Juan Francisco",
+      "apellido": "García Flores",
+      "direccion": "C. Montes Urales 445",
+      "telefono": "ejemplo@ejemplo.mx",
+      "tipo_doc": "0",
+      "documento": ""
+    },
+    {
+      "id": "d3cc",
+      "nombre": "Juan Francisco",
+      "apellido": "García Flores",
+      "direccion": "C. Montes Urales 445",
+      "telefono": "ejemplo@ejemplo.mx",
+      "tipo_doc": "0",
+      "documento": ""
+    },
+    {
+      "id": "f9d0",
+      "nombre": "",
+      "apellido": "",
+      "direccion": "",
+      "telefono": "",
+      "tipo_doc": "0",
+      "documento": ""
+    },
+    {
+      "id": "d53e",
+      "nombre": "Juan Francisco",
+      "apellido": "García Flores",
+      "direccion": "C. Montes Urales 445",
+      "telefono": "ejemplo@ejemplo.mx",
+      "tipo_doc": "0",
+      "documento": "1"
+    },
+    {
+      "id": "0f00",
+      "nombre": "Juan Francisco",
+      "apellido": "García Flores",
+      "direccion": "C. Montes Urales 445",
+      "telefono": "ejemplo@ejemplo.mx",
+      "tipo_doc": "0",
+      "documento": "2"
+    },
+    {
+      "id": "e0a0",
+      "nombre": "Gottfried",
+      "apellido": "Leibniz",
+      "direccion": "Erika-Mann-Straße 33",
+      "telefono": "test@beispiel.de",
+      "tipo_doc": "1",
+      "documento": "1"
+    },
+    {
+      "id": "a453",
+      "nombre": "Gottfried",
+      "apellido": "Leibniz",
+      "direccion": "Erika-Mann-Straße 33",
+      "telefono": "test@beispiel.de",
+      "tipo_doc": "0",
+      "documento": "2"
+    }
+  ],
+  "documentos":[
+    
+  ]
+}
