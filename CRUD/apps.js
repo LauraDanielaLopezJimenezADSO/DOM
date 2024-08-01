@@ -7,6 +7,7 @@ import {validarNumero  } from "./modules/validarNumero.js";
 import {validarLetras } from "./modules/validarLetras.js"
 import {validarDoc  } from "./modules/validarDocumento.js";
 import {is_valid } from "./modules/is_valid.js";
+import solicitud from "./ajax.js";
 
 const $formulario = document.querySelector("form");
 const nombre = document.querySelector("#nombre");
@@ -18,11 +19,72 @@ const documento = document.querySelector("#num_doc");
 const politicas = document.querySelector("#politicas");
 const enviar = document.querySelector("#enviar");
 const email = document.querySelector("#email");
+const fragment = document.createDocumentFragment();
 
-function quitarCalse (valor) {valor.classList.remove("error");}
+// function quitarCalse (valor) {valor.classList.remove("error");}
 
-const validar = (e) => validarValidar(e)
+// const validar = (e) => validarValidar(e)
    
+const documentos = ( ) => {
+    fetch('http://localhost:3000/documentos')
+    .then((response) => response.json())
+    .then((data) => {
+
+        let optionDefault = document.createElement("option")
+        optionDefault.textContent = "Seleccionar..";
+        optionDefault.value = "";
+        fragment.appendChild(optionDefault)
+
+        data.forEach(element => {
+            console.log(element);
+            let option = document.createElement("option")
+            option.value = element.id;
+            option.textContent = element.tipoDoc;
+            
+            fragment.appendChild(option)
+        });
+        tipo_doc.appendChild(fragment)
+
+        // const tabla = `<tr>
+        //                 <th>Nombre</th>
+        //                 <th>Apellido</th>
+        //                 <th>Direccion</th>
+        //                 <th>Télefono</th>
+        //                 <th>Tipo de documento</th>
+        //                 <th>Documento</th>
+        //                 <th>Email</th>
+        //                 </tr>`;
+        // for(let dato of data){
+        //     tabla += `<tr>
+        //                 <td>${data.name}</td>
+        //                     <td>${data.apellido}</td>
+        //                     <td>${data.direccion}</td>
+        //                     <td>${data.telefono}</td>
+        //                     <td>${data.documento}</td>
+        //                     <td>${data.email}</td>
+        //             </tr>`;
+        // }
+        // document.querySelector("#tabla1").innerHTML = tabla
+    });
+}
+
+const listarTabla = () =>{
+    const data = solicitud("user").then(data => {console.log(data);})
+
+    
+
+} 
+
+
+addEventListener("DOMContentLoaded", (event) => {
+    documentos()
+    listarTabla()
+    if(!politicas.checked){
+        enviar.setAttribute("disabled", "")
+    }
+
+})
+
 $formulario.addEventListener("submit", (e)=>{
     let response = is_valid(e, "form [required]");
     // alert(response) 
@@ -33,7 +95,8 @@ $formulario.addEventListener("submit", (e)=>{
         direccion: direccion.value,
         telefono: telefono.value,
         tipo_doc: tipo_doc.value,
-        documento: documento.value
+        documento: documento.value,
+        email: email.value
     }
     if(response){
         fetch("http://localhost:3000/user", {
@@ -50,16 +113,28 @@ $formulario.addEventListener("submit", (e)=>{
                     Apellido: ${data.apellido} 
                     Direccion: ${data.direccion}
                     Telefono: ${data.telefono}
-                    Documento:${data.documento}` )
+                    Documento:${data.documento}
+                    Email: ${data.email}` )
             }else{
                 alert("Error al agregar los datos")
             }
         }))
+
+        .then((json) => {
+            nombre.value = '',
+            apellido.value = '',
+            direccion.value = '',
+            telefono.value = '',
+            tipo_doc.value = '',
+            documento.value = '',
+            email.value = ''
+        });
     }
     
 });
 
 const remover = (e) => validarRemover(e)
+
 
 nombre.addEventListener("keyup", (e) => {remover(e);});
 

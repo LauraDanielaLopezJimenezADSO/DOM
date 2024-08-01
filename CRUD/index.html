@@ -27,10 +27,6 @@
                 
                 <label for="tipo_doc">Tipo de documento: </label>
                 <select class=" input_ingresar" name="" id="tipo_doc" required>
-                    <option disabled selected value="0" >Selecciona el tipo de documento</option>
-                    <option value="1">Cedula de ciudadania</option>
-                    <option value="2">Tarjeta de identidad</option>
-                    <option value="3">Cedula extranjeria</option>
                 </select>
                 <label  for="num_doc">ingresa el numero de documento:</label>
                 <input type="" id="num_doc" placeholder="numero de documento" autocomplete="off" required>
@@ -42,6 +38,12 @@
                 <button type="submit" id="enviar">Enviar</button>
                 
             </form>
+            <div class="container">
+                <div class="row">
+                    <table class="table table-striped" id="tabla1">
+                    </table>
+                </div>
+            </div>
         </div>
     </section>
     <script src="apps.js" type="module"></script>

@@ -1,6 +1,5 @@
 export const is_valid = (event, form) => {
     event.preventDefault();
-
     const elements = document.querySelectorAll(form);
     let bandera = true;
     elements.forEach(element => {
@@ -11,5 +10,4 @@ export const is_valid = (event, form) => {
         }
     })
     return bandera;
-    
 };

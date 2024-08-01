@@ -1,18 +1,21 @@
 import { validarLetras } from "./modules/validarLetras.js";
 import { is_valid } from "./modules/is_valid.js";
+const enviar = document.querySelector("#enviar");
 
-const tipo_Doc = document.querySelector("#tipo_Doc");
+const tipoDoc = document.querySelector("#tipoDocc");
 const $formulario = document.querySelector("form");
 
 $formulario.addEventListener("submit", (e)=>{
     let response = is_valid(e, "form [required]");
     const data = {
-        tipo: tipo_Doc.value
+        tipoDoc: tipoDoc.value
     }
 
     if(response){
+        enviar.setAttribute('disabled', '')
+
         fetch("http://localhost:3000/documentos", {
-            method: 'POST', //metodo
+            method: 'POST', //metodo this. reset formulario.reset headerlocation reload
             body: JSON.stringify(data),  //cuerpo
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
@@ -21,12 +24,19 @@ $formulario.addEventListener("submit", (e)=>{
         .then((response => {
             if(response.ok){
                 alert(`Datos guardados:
-                    Tipo:${data.tipo}` )
+                    Tipo:${data.tipoDoc}` )
             }else{
                 alert("Error al agregar los datos")
             }
         }))
+        
+        .then((json) => {
+            tipoDoc.value = '';
+            enviar.removeAttribute('disabled', '')
+
+        });
     }
 })
-tipo_Doc.addEventListener("keypress", (e)=>{ validarLetras(e)});
-tipo_Doc.addEventListener("keypress", (e)=>{ is_valid(e)});
+
+tipoDoc.addEventListener("keypress", (e)=>{ validarLetras(e)});
+tipoDoc.addEventListener("submit", (e) => { is_valid(e)});
