@@ -52,4 +52,32 @@ button:hover{
     border: 2px solid rgb(56, 240, 0);
 }
 
+/* -----------------layouttt---------------- */
+
+.contenedor{
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.mt-40{
+    margin-top: 50px;
+}
+.mb-40{
+    margin-bottom: 50px;
+}
+
+.layout{
+    display: grid;
+    grid-template-areas: "form table";
+    grid-template-columns: 500px 11fr;
+    gap: 1rem;
+}
+
+.formulario{
+    grid-area: form;
+}
+
+.table{
+    grid-area: table;
+}
 

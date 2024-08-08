@@ -8,6 +8,8 @@ import {validarLetras } from "./modules/validarLetras.js"
 import {validarDoc  } from "./modules/validarDocumento.js";
 import {is_valid } from "./modules/is_valid.js";
 import solicitud from "./ajax.js";
+import { URL } from "./modules/config.js";
+
 
 const $formulario = document.querySelector("form");
 const nombre = document.querySelector("#nombre");
@@ -20,10 +22,15 @@ const politicas = document.querySelector("#politicas");
 const enviar = document.querySelector("#enviar");
 const email = document.querySelector("#email");
 const fragment = document.createDocumentFragment();
+const tbUser = document.querySelector("#tp_user").content;
+const tb_fragment = document.createDocumentFragment();
+const tbody = document.querySelector("tbody")
 
-// function quitarCalse (valor) {valor.classList.remove("error");}
 
-// const validar = (e) => validarValidar(e)
+
+// let $Listar = document.querySelectorAll('form > *[required]')
+// console.log($Listar);
+
    
 const documentos = ( ) => {
     fetch('http://localhost:3000/documentos')
@@ -44,35 +51,47 @@ const documentos = ( ) => {
             fragment.appendChild(option)
         });
         tipo_doc.appendChild(fragment)
-
-        // const tabla = `<tr>
-        //                 <th>Nombre</th>
-        //                 <th>Apellido</th>
-        //                 <th>Direccion</th>
-        //                 <th>Télefono</th>
-        //                 <th>Tipo de documento</th>
-        //                 <th>Documento</th>
-        //                 <th>Email</th>
-        //                 </tr>`;
-        // for(let dato of data){
-        //     tabla += `<tr>
-        //                 <td>${data.name}</td>
-        //                     <td>${data.apellido}</td>
-        //                     <td>${data.direccion}</td>
-        //                     <td>${data.telefono}</td>
-        //                     <td>${data.documento}</td>
-        //                     <td>${data.email}</td>
-        //             </tr>`;
-        // }
-        // document.querySelector("#tabla1").innerHTML = tabla
     });
 }
 
-const listarTabla = () =>{
-    const data = solicitud("user").then(data => {console.log(data);})
+const listarTabla = async () =>{
+    const data = await solicitud("user");
+    data.forEach(element => {
+        tbUser.querySelector(".nombre").textContent = element.nombre;
+        tbUser.querySelector(".apellido").textContent = element.apellido;
+        tbUser.querySelector(".direccion").textContent = element.direccion;
+        tbUser.querySelector(".telefono").textContent = element.telefono;
+        tbUser.querySelector(".email").textContent = element.email;
+        tbUser.querySelector(".tipoDoc").textContent = element.tipo_doc;
+        tbUser.querySelector(".document").textContent = element.documento;
 
+        const clone = document.importNode(tbUser, true);
+        tb_fragment.appendChild(clone);
+    });
+    tbody.appendChild(tb_fragment)
+    // tbUser
     
+} 
 
+const createRow = (data) =>{
+    const tr = tbody.insertRow(-1)
+
+    const tdNombre = tr.insertCell(0)
+    const tdApellido = tr.insertCell(1)
+    const tDireccion= tr.insertCell(2)
+    const tdTelefono = tr.insertCell(3)
+    const tdEmail= tr.insertCell(4)
+    const tdTipoDoc = tr.insertCell(5)
+    const tDocument= tr.insertCell(6)
+
+    tdNombre.textContent = data.nombre; //nombre nombre del json
+    tdApellido.textContent = data.apellido;
+    tDireccion.textContent = data.direccion;
+    tdTelefono.textContent = data.telefono;
+    tdEmail.textContent = data.email;
+    tdTipoDoc.textContent = data.tipo_doc;
+    tDocument.textContent = data.documento;
+    
 } 
 
 
@@ -99,7 +118,7 @@ $formulario.addEventListener("submit", (e)=>{
         email: email.value
     }
     if(response){
-        fetch("http://localhost:3000/user", {
+        fetch(`${URL}/user`, {
             method: 'POST', //metodo
             body: JSON.stringify(data),  //cuerpo
             headers: {
@@ -113,6 +132,7 @@ $formulario.addEventListener("submit", (e)=>{
                     Apellido: ${data.apellido} 
                     Direccion: ${data.direccion}
                     Telefono: ${data.telefono}
+                    Tipo de documento: ${data.tipo_doc}
                     Documento:${data.documento}
                     Email: ${data.email}` )
             }else{
@@ -120,6 +140,8 @@ $formulario.addEventListener("submit", (e)=>{
             }
         }))
 
+        
+        
         .then((json) => {
             nombre.value = '',
             apellido.value = '',
@@ -127,8 +149,20 @@ $formulario.addEventListener("submit", (e)=>{
             telefono.value = '',
             tipo_doc.value = '',
             documento.value = '',
-            email.value = ''
+            email.value = '',
+            politicas.checked = false,
+
+            nombre.classList.remove("correcto")
+            apellido.classList.remove("correcto")
+            direccion.classList.remove("correcto")
+            telefono.classList.remove("correcto")
+            tipo_doc.classList.remove("correcto")
+            documento.classList.remove("correcto")
+            email.classList.remove("correcto")
+
+            createRow(json)
         });
+
     }
     
 });
@@ -150,7 +184,7 @@ documento.addEventListener("keyup", (e) => {remover(e);});
 
 enviar.setAttribute('disabled', '');
 
-politicas.addEventListener("change", (e) => validarPoliticas(e, enviar));    
+politicas.addEventListener("change", (e) => {validarPoliticas(e, enviar)});    
 console.log($formulario)
 
 documento.addEventListener("keypress", (e) => validarNumero(e));
@@ -164,3 +198,11 @@ apellido.addEventListener("keypress", (e)=>{validarLetras(e)});
 documento.addEventListener("keypress", (e) => validarDoc(e));
 
 email.addEventListener('input', (e) => validarCorreo(e));
+
+// $formulario.addEventListener('submit', (e) => {
+//     $Listar.forEach((selector) => {
+//         selector.setAttribute('disabled', '')
+//     })
+//     politicas.checked = false;
+
+// })
