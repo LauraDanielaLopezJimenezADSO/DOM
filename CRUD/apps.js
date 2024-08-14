@@ -7,7 +7,7 @@ import {validarNumero  } from "./modules/validarNumero.js";
 import {validarLetras } from "./modules/validarLetras.js"
 import {validarDoc  } from "./modules/validarDocumento.js";
 import {is_valid } from "./modules/is_valid.js";
-import solicitud from "./ajax.js";
+import solicitud, {envia} from "./ajax.js";
 import { URL } from "./modules/config.js";
 
 
@@ -28,8 +28,50 @@ const tbody = document.querySelector("tbody")
 
 
 
+
 // let $Listar = document.querySelectorAll('form > *[required]')
 // console.log($Listar);
+
+const buscar = async(element) =>{    
+    // let user = await solicitud(`user/${element.dataset.id}`)
+    // console.log(user);
+    envia(`user/${element.dataset.id}`, {
+        method: "PATCH",
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        }
+    })
+    .then((data) => {
+        console.log(data);
+        nombre.value = data.nombre
+        apellido.value = data.apellido,
+        direccion.value = data.direccion,
+        telefono.value = data.telefono,
+        tipo_doc.value = data.tipo_doc,
+        documento.value = data.documento,
+        email.value = data.email,
+        politicas.checked = true
+        
+    })
+
+    
+    
+    
+    
+
+    
+}
+
+
+document.addEventListener("click", (e) => {
+    if(e.target.matches(".modificar")){
+        buscar(e.target)
+        
+    }
+    // console.log(e.target.matches(".modificar"));
+    
+})
+
 
    
 const documentos = ( ) => {
@@ -55,15 +97,32 @@ const documentos = ( ) => {
 }
 
 const listarTabla = async () =>{
+    //traer los usuarios
     const data = await solicitud("user");
+    //traer los documentos
+    const tipo = await solicitud("documentos")
+    console.log(tipo);
+    
     data.forEach(element => {
+        let name = tipo.find((e) => e.id === element.tipo_doc ? e.tipoDoc : null);
+        // let name = tipo.find((e) => {
+        //     if(e.id === element.tipo_doc){
+        //         return e.tipoDoc
+        //     }
+        // });
+        console.log(name.tipoDoc);
         tbUser.querySelector(".nombre").textContent = element.nombre;
         tbUser.querySelector(".apellido").textContent = element.apellido;
         tbUser.querySelector(".direccion").textContent = element.direccion;
         tbUser.querySelector(".telefono").textContent = element.telefono;
         tbUser.querySelector(".email").textContent = element.email;
-        tbUser.querySelector(".tipoDoc").textContent = element.tipo_doc;
+
+        // tipo.forEach(e => e.id === element.tipo_doc ? tbUser.querySelector(".tipoDoc").textContent = e.tipoDoc : null)
+        
+        // tbUser.querySelector(".tipoDoc").textContent = element.tipo_doc;
         tbUser.querySelector(".document").textContent = element.documento;
+        tbUser.querySelector('.modificar').setAttribute('data-id', element.id)
+
 
         const clone = document.importNode(tbUser, true);
         tb_fragment.appendChild(clone);
@@ -166,6 +225,8 @@ $formulario.addEventListener("submit", (e)=>{
     }
     
 });
+
+
 
 const remover = (e) => validarRemover(e)
 

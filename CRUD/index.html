@@ -35,7 +35,7 @@
                     <input type="checkbox" id="politicas">
                     <label for="politicas">politicas de privacidad </label>
                 </div>
-                <button type="submit" id="enviar">Enviar</button>
+                <button class="button" type="submit" id="enviar">Enviar</button>
                 
             </form>
             <div class="table">
@@ -48,6 +48,7 @@
                         <th>Email</th>
                         <th>Tipo documento</th>
                         <th>Documento</th>
+                        <th>Botón</th>
                     </thead>
                     <tbody>
                     </tbody>
@@ -64,10 +65,17 @@
             <td class="email">Email</td>
             <td class="tipoDoc">Tipo documento</td>
             <td class="document">Documento</td>
+            <td>
+                <div>
+                    <button class="modificar">Modificar</button>
+                    <button class="eliminar">Eliminar</button>
+                </div>
+            </td>
         </tr>
+        
+        
     </template>
-
-
+    
     <script src="apps.js" type="module"></script>
 </body>
 </html>

@@ -68,7 +68,7 @@ button:hover{
 
 .layout{
     display: grid;
-    grid-template-areas: "form table";
+    grid-template-areas: "form table botones";
     grid-template-columns: 500px 11fr;
     gap: 1rem;
 }
@@ -81,3 +81,6 @@ button:hover{
     grid-area: table;
 }
 
+.botones{
+    grid-area: botones;
+}
