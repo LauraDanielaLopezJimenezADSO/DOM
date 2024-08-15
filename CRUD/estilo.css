@@ -84,3 +84,8 @@ button:hover{
 .botones{
     grid-area: botones;
 }
+
+/* .table_diseno{
+    background-color: rgb(0, 2, 36);
+    color: white;
+} */

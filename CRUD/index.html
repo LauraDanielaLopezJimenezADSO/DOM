@@ -9,7 +9,10 @@
 <body>
     <section >
         <div class="contenedor layout mt-40 mb-40">
-            <form class="formulario" action="" novalidate>
+            <form class="formulario" novalidate>
+
+                <input type="hidden" name="id" id="id" placeholder="id" autocomplete="off">
+                
                 <label for="nombre">Ingresa tu nombre: </label>
                 <input type="text" name="nombre" id="nombre" placeholder="nombre" autocomplete="off" required>
 
@@ -39,7 +42,7 @@
                 
             </form>
             <div class="table">
-                <table>
+                <table border="" class="table_diseno">
                     <thead class="tb_head">
                         <th>Nombre</th>
                         <th>Apellido</th>
