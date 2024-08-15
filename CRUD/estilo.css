@@ -69,7 +69,7 @@ button:hover{
 .layout{
     display: grid;
     grid-template-areas: "form table botones";
-    grid-template-columns: 500px 11fr;
+    grid-template-columns: 500px 1fr;
     gap: 1rem;
 }
 
