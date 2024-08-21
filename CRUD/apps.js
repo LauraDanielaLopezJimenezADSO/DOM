@@ -33,7 +33,8 @@ const tbody = document.querySelector("tbody")
 // let $Listar = document.querySelectorAll('form > *[required]')
 // console.log($Listar);
 
-const buscar = async(element) =>{  
+const buscar = async(element) =>{
+    
     let data = await envia(`user/${element.dataset.id}`, {
         method: "PATCH",
         headers: {
@@ -67,10 +68,11 @@ const save = (event) => {
             actualizar(data)
         }
     }
+    return;
 }
 
 
-const guardar=(data)=>{
+const guardar = (data)=>{
     console.log(data);
     
     // return
@@ -83,40 +85,44 @@ const guardar=(data)=>{
     })
     .then((response) => response.json())
     .then((json) => {
-        nombre.value = '',
-        apellido.value = '',
-        direccion.value = '',
-        telefono.value = '',
-        tipo_doc.value = '',
-        documento.value = '',
-        email.value = '',
-        politicas.checked = false,
 
-        nombre.classList.remove("correcto")
-        apellido.classList.remove("correcto")
-        direccion.classList.remove("correcto")
-        telefono.classList.remove("correcto")
-        tipo_doc.classList.remove("correcto")
-        documento.classList.remove("correcto")
-        email.classList.remove("correcto")
-
+        
+        limpiar()
         createRow(json)
     });
     
 }                                                                                                                                                                                                                                                   
 const actualizar = async (data)=>{
-    // console.log(data, id.value);
-    const dato = await envia(`user/${id.value}`, {
+    
+    // console.log("la data es"+data, id.value);
+    const response = await envia(`user/${id.value}`, {        
         method: 'PUT',
-        body: JSON.stringify({data}),
+        body: JSON.stringify(data),
         headers: {
             'Content-type': 'application/json; charset=UTF-8',
         },
     })
-    console.log(dato);
+    //limpiar formulario
     limpiar()
-    
+    //modificar la fila el tr
+    editRow(response)
 }
+
+const eliminar = async(element) =>{
+    console.log(element);
+    
+   
+    let data = await envia(`user/${element.dataset.id}`, {
+        method: "DELETE",
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        }
+    })
+    let confirmar = confirm(`Desea eliminar al Usuario: 
+        ${element.dataset.id} del regisro`)
+    loadForm(data)
+}
+
 const limpiar = () => {
     nombre.value = '',
     apellido.value = '',
@@ -126,6 +132,30 @@ const limpiar = () => {
     documento.value = '',
     email.value = '',
     politicas.checked = false
+
+    nombre.classList.remove("correcto")
+    apellido.classList.remove("correcto")
+    direccion.classList.remove("correcto")
+    telefono.classList.remove("correcto")
+    tipo_doc.classList.remove("correcto")
+    documento.classList.remove("correcto")
+    email.classList.remove("correcto")
+}
+
+const editRow = async (data) =>{
+    const tipo = await solicitud("documentos")
+    let name = tipo.find((e) => e.id === data.tipo_doc ? e.tipoDoc : null);
+    const tr = document.querySelector(`#user_${data.id}`)
+    // nombre = tr.querySelector(".nombre")
+    tr.querySelector(".nombre").textContent = data.nombre;
+    // tr.querySelector(".nombre").textContent = data.apellido;
+    // tr.querySelector(".nombre").textContent = data.direccion;
+    // tr.querySelector(".nombre").textContent = data.telefono;
+    // tr.querySelector(".tipo_doc").textContent = name;
+    // tr.querySelector(".nombre").textContent = data.documento;
+    // tr.querySelector(".nombre").textContent = data.email;
+    console.log(tr);
+    
 }
 
 const loadForm =(data) =>{
@@ -167,6 +197,15 @@ document.addEventListener("click", (e) => {
     
 })
 
+document.addEventListener("click", (e) => {
+    if(e.target.matches(".eliminar")){
+        buscar(e.target)
+        
+    }
+    eliminar(e.target)
+    // console.log(e.target.matches(".eliminar"));
+    
+})
 
    
 const documentos = ( ) => {
@@ -200,12 +239,9 @@ const listarTabla = async () =>{
     
     data.forEach(element => {
         let name = tipo.find((e) => e.id === element.tipo_doc ? e.tipoDoc : null);
-        // let name = tipo.find((e) => {
-        //     if(e.id === element.tipo_doc){
-        //         return e.tipoDoc
-        //     }
-        // });
-        // console.log(name.tipoDoc);
+        // console.log(tbUser.querySelector("tr"))
+        tbUser.querySelector("tr").id = `user_${element.id}`
+        
         tbUser.querySelector(".nombre").textContent = element.nombre;
         tbUser.querySelector(".apellido").textContent = element.apellido;
         tbUser.querySelector(".direccion").textContent = element.direccion;
@@ -216,8 +252,10 @@ const listarTabla = async () =>{
         
         // tbUser.querySelector(".tipoDoc").textContent = element.tipo_doc;
         tbUser.querySelector(".document").textContent = element.documento;
-        tbUser.querySelector('.modificar').setAttribute('data-id', element.id)
+        // tbUser.querySelector(".tipo_doc").textContent = name;
 
+        tbUser.querySelector('.modificar').setAttribute('data-id', element.id)
+        tbUser.querySelector('.eliminar').setAttribute('data-id', element.id)
 
         const clone = document.importNode(tbUser, true);
         tb_fragment.appendChild(clone);
