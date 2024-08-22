@@ -29,10 +29,6 @@ const tbody = document.querySelector("tbody")
 
 
 
-
-// let $Listar = document.querySelectorAll('form > *[required]')
-// console.log($Listar);
-
 const buscar = async(element) =>{
     
     let data = await envia(`user/${element.dataset.id}`, {
@@ -71,7 +67,6 @@ const save = (event) => {
     return;
 }
 
-
 const guardar = (data)=>{
     console.log(data);
     
@@ -91,7 +86,8 @@ const guardar = (data)=>{
         createRow(json)
     });
     
-}                                                                                                                                                                                                                                                   
+}
+                                                                                                                                                                                                                                                   
 const actualizar = async (data)=>{
     
     // console.log("la data es"+data, id.value);
@@ -109,18 +105,35 @@ const actualizar = async (data)=>{
 }
 
 const eliminar = async(element) =>{
-    console.log(element);
-    
-   
-    let data = await envia(`user/${element.dataset.id}`, {
-        method: "DELETE",
-        headers: {
-            'Content-type': 'application/json; charset=UTF-8',
-        }
-    })
-    let confirmar = confirm(`Desea eliminar al Usuario: 
-        ${element.dataset.id} del regisro`)
-    loadForm(data)
+    let data = element.dataset.id
+    const tr = document.querySelector(`#user_${data}`)
+    const username = tr.querySelector(".nombre").textContent;
+    const confirmDelete = confirm(`Desea eliminar al Usuario: ${username} del registro?`)
+
+    if(confirmDelete){
+        const response = await envia(`user/${data}`, {
+            method: "DELETE",
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            }
+        })
+        tr.remove();
+    }
+
+    // let data = await envia(`user/${element.dataset.id}`, {
+    //     method: "PATCH",
+    //     headers: {
+    //         'Content-type': 'application/json; charset=UTF-8',
+    //     }
+    // })
+    // let confirmar = confirm(`Desea eliminar al Usuario: 
+    //     ${data.nombre} del regisro`)
+    // if(confirmar === true){
+    //     await envia(`user/${element.dataset.id}`, {
+    //         method: 'DELETE'
+    //     })
+    //     document.querySelector(`#user_${element.dataset.id}`).remove()
+    // }
 }
 
 const limpiar = () => {
@@ -183,30 +196,6 @@ const loadForm =(data) =>{
     politicas.checked = true,
     enviar.removeAttribute("disabled") 
 }
-
-
-
-
-
-document.addEventListener("click", (e) => {
-    if(e.target.matches(".modificar")){
-        buscar(e.target)
-        
-    }
-    // console.log(e.target.matches(".modificar"));
-    
-})
-
-document.addEventListener("click", (e) => {
-    if(e.target.matches(".eliminar")){
-        buscar(e.target)
-        
-    }
-    eliminar(e.target)
-    // console.log(e.target.matches(".eliminar"));
-    
-})
-
    
 const documentos = ( ) => {
     fetch('http://localhost:3000/documentos')
@@ -230,14 +219,42 @@ const documentos = ( ) => {
     });
 }
 
-const listarTabla = async () =>{
+const listarTabla = async (page) =>{ 
+    const _page = page ? page : 1;
     //traer los usuarios
-    const data = await solicitud("user");
+    const data = await solicitud(`user?_page=${_page}&_per_page=5`);
     //traer los documentos
     const tipo = await solicitud("documentos")
-    console.log(tipo);
+
+    //manegacion con los botones
+    const nav = document.querySelector(".navegacion")
+
+    //carga los datos quw trae la api
+    const first = data.first;
+    const prev = data.prev;
+    const next = data.next;
+    const last = data.last;
+    console.log(`first: ${first}, prev: ${prev},next: ${next},last: ${last}`);
     
-    data.forEach(element => {
+
+    nav.querySelector(".first").disabled = prev ? false : true;
+    nav.querySelector(".prev").disabled = prev ? false : true;
+    nav.querySelector(".next").disabled = next ? false : true;
+    nav.querySelector(".last").disabled = next ? false : true;
+
+    nav.querySelector(".first").setAttribute("data-first", first)
+    nav.querySelector(".prev").setAttribute("data-prev", prev)
+    nav.querySelector(".next").setAttribute("data-next", next)
+    nav.querySelector(".last").setAttribute("data-last", last)
+
+
+    // console.log(nav);
+    // console.log(tipo);
+    // console.log(data);
+    // return
+    
+
+    data.data.forEach(element => {
         let name = tipo.find((e) => e.id === element.tipo_doc ? e.tipoDoc : null);
         // console.log(tbUser.querySelector("tr"))
         tbUser.querySelector("tr").id = `user_${element.id}`
@@ -248,8 +265,10 @@ const listarTabla = async () =>{
         tbUser.querySelector(".telefono").textContent = element.telefono;
         tbUser.querySelector(".email").textContent = element.email;
 
-        // tipo.forEach(e => e.id === element.tipo_doc ? tbUser.querySelector(".tipoDoc").textContent = e.tipoDoc : null)
+        //traer los tipos de documentos al momento de listar la tabla con su valor 
+        tipo.forEach(e => e.id === element.tipo_doc ? tbUser.querySelector(".tipoDoc").textContent = e.tipoDoc : null)
         
+        //trae el id de los tipos de documentos
         // tbUser.querySelector(".tipoDoc").textContent = element.tipo_doc;
         tbUser.querySelector(".document").textContent = element.documento;
         // tbUser.querySelector(".tipo_doc").textContent = name;
@@ -261,7 +280,6 @@ const listarTabla = async () =>{
         tb_fragment.appendChild(clone);
     });
     tbody.appendChild(tb_fragment)
-    // tbUser
     
 } 
 
@@ -283,9 +301,57 @@ const createRow = (data) =>{
     tdEmail.textContent = data.email;
     tdTipoDoc.textContent = data.tipo_doc;
     tDocument.textContent = data.documento;
-    
+
+
 } 
 
+document.addEventListener("click", (e) => {
+    if(e.target.matches(".modificar")){
+        buscar(e.target)
+        
+    }
+    if(e.target.matches(".eliminar")){
+        eliminar(e.target)
+        
+    }
+
+    if(e.target.matches(".first")){
+        const nodos = tbody;
+        const first = e.target.dataset.first;
+        while (nodos.firstChild) {
+            nodos.removeChild(nodos.firstChild)
+            
+        }
+        listarTabla(first)
+    }
+    if(e.target.matches(".prev")){
+        const nodos = tbody;
+        const prev = e.target.dataset.prev;
+        while (nodos.firstChild) {
+            nodos.removeChild(nodos.firstChild)
+            
+        }
+        listarTabla(prev)
+    }
+    if(e.target.matches(".next")){
+        const nodos = tbody;
+        const next = e.target.dataset.next;
+        while (nodos.firstChild) {
+            nodos.removeChild(nodos.firstChild)
+            
+        }
+        listarTabla(next)
+    }
+    if(e.target.matches(".last")){
+        const nodos = tbody;
+        const last = e.target.dataset.last;
+        while (nodos.firstChild) {
+            nodos.removeChild(nodos.firstChild)
+            
+        }
+        listarTabla(last)
+    }
+})
 
 addEventListener("DOMContentLoaded", (event) => {
     documentos()
